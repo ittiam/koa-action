@@ -25,7 +25,6 @@ app.context.logger = logger;
 var onerror = require('koa-onerror');
 onerror(app);
 
-
 var views = require('koa-views');
 app.use(views(__dirname + '/views', {
   map: {
@@ -53,7 +52,7 @@ app.use(staticCache(staticDir + '/styles'));
 var router = require('koa-router')();
 
 //应用路由
-var appRouter = require('./router/index');
+var appRouter = require('./router');
 appRouter(router);
 
 app

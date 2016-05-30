@@ -1,5 +1,4 @@
 var User = require('../models').User;
-var parse = require('co-body');
 
 module.exports = {
   index: function* () {
@@ -10,5 +9,17 @@ module.exports = {
 
     var user = yield User.create({ name: body.username });
     this.body = user;
+  },
+  user: function* () {
+    var name = this.params.name;
+    var user = yield User.findByName(name);
+    if (!user) {
+      this.body = {
+        error: 'user not found!',
+        message: '未找到用户 ' + name
+      }
+      return;
+    }
+    yield this.render('user', user);
   }
 }
