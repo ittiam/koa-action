@@ -1,7 +1,7 @@
 //应用配置文件
 var path = require('path');
 var local = require('./local');
-var _ = require('underscore');
+var _ = require('lodash');
 
 var config = {
   'title': '',
@@ -15,7 +15,18 @@ var config = {
   //log所在的目录
   'logDir': path.join(__dirname, '..', 'log'),
   //静态文件所在的目录
-  'staticDir': path.join(__dirname, '..', 'public')
+  'staticDir': path.join(__dirname, '..', 'public'),
+  'db': {
+    host: '127.0.0.1',
+    port: 3306,
+    username: '',
+    password: '',
+    name: ''
+  },
+  'redis': {
+    host: '127.0.0.1',
+    port: ''
+  }
 };
 
 //当NODE_ENV环境变量值为local时

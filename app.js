@@ -4,7 +4,7 @@ var koa = require('koa');
 var config = require('./config/config');
 
 var app = koa();
-app.use(function *(next){
+app.use(function* (next){
   //config 注入中间件，方便调用配置信息
   if (!this.config) {
     this.config = config;
@@ -25,13 +25,13 @@ app.context.logger = logger;
 var onerror = require('koa-onerror');
 onerror(app);
 
-//xtemplate对koa的适配
-var xtplApp = require('xtpl/lib/koa');
-//xtemplate模板渲染
-xtplApp(app, {
-  //配置模板目录
-  views: config.viewDir
-});
+
+var views = require('koa-views');
+app.use(views(__dirname + '/views', {
+  map: {
+    html: 'swig'
+  }
+}));
 
 var session = require('koa-session');
 app.use(session(app));
@@ -46,8 +46,8 @@ app.use(validator());
 //静态文件cache
 var staticCache = require('koa-static-cache');
 var staticDir = config.staticDir;
-app.use(staticCache(staticDir+'/js'));
-app.use(staticCache(staticDir+'/css'));
+app.use(staticCache(staticDir + '/scripts'));
+app.use(staticCache(staticDir + '/styles'));
 
 //路由
 var router = require('koa-router')();
@@ -61,7 +61,7 @@ app
   .use(router.allowedMethods());
 
 app.listen(config.port);
-console.log('listening on port %s',config.port);
+console.log('listening on port %s', config.port);
 
 module.exports = app;
 
