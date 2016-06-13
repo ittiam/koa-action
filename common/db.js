@@ -1,5 +1,5 @@
-var Sequelize = require('sequelize');
-var config = require('../config/config');
+const Sequelize = require('sequelize');
+const config = require('../config/config');
 
 const dbHost = config.db.host;
 const dbPort = config.db.port;

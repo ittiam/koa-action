@@ -28,6 +28,9 @@
     "swig": "~1.4.2"
   },
   "devDependencies": {
+    "eslint": "^2.10.2",
+    "eslint-config-airbnb-base": "^3.0.1",
+    "eslint-friendly-formatter": "^2.0.5",
     "mocha": "~2.5.2",
     "should": "~8.4.0",
     "supertest": "~1.2.0"
