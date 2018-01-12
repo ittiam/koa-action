@@ -8,6 +8,6 @@ app.use(async (ctx, next) => {
   ctx.response.body = '<h1>Hello, koa2!</h1>';
 });
 
-// 在端口3000监听:
-app.listen(3000);
-console.log('app started at port 3000...');
+// 在端口 8360 监听:
+app.listen(8360);
+console.log('app started at port 8360...');
